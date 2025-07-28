@@ -3,12 +3,13 @@ package telran.java58.person.dto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
+
+import java.time.LocalDate;
 
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class CityPopulationDto {
-    private String city;
-    private Long population;
+public class ChildDto extends PersonDto{
+    private String kindergarten;
+
 }
