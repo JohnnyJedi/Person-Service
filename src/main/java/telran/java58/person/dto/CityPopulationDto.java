@@ -10,6 +10,5 @@ import lombok.Setter;
 @NoArgsConstructor
 public class CityPopulationDto {
     private String city;
-    @Setter
     private Long population;
 }

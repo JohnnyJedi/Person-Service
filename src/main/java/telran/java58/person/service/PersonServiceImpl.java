@@ -52,6 +52,7 @@ public class PersonServiceImpl implements PersonService {
     public PersonDto updatePersonName(Integer id, String newName) {
         Person person = personRepository.findById(id).orElseThrow(PersonNotFoundException::new);
         person.setName(newName);
+//        personRepository.save(person);
         return modelMapper.map(person, PersonDto.class);
     }
 
@@ -64,6 +65,7 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
+//    @Transactional(readOnly = true)
     public PersonDto[] findPersonsByNames(String name) {
         Person[] persons = personRepository.findAllByName(name);
         return modelMapper.map(persons, PersonDto[].class);
@@ -85,12 +87,6 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public Iterable<CityPopulationDto> getCitiesPopulation() {
-        List<String> addresses = personRepository.findAll()
-                .stream()
-                .map(p -> p.getAddress().getCity()).toList();
-        Map<String, Long> mapAddress = addresses.stream().collect(Collectors.groupingBy(city -> city, Collectors.counting()));
-        return mapAddress.entrySet()
-                .stream()
-                .map(city -> new CityPopulationDto(city.getKey(), city.getValue())).collect(Collectors.toList());
+        return personRepository.showCityPopulation();
     }
 }
