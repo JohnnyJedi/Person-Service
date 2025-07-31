@@ -29,6 +29,6 @@ public interface PersonRepository extends JpaRepository<Person, Integer> {
     @Query("select  c from  Child c")
     List<Child> findAllChildren();
 
-    @Query("select  c from  Employee c where c.salary between ?1 and ?2")
+    @Query("select  e from  Employee e where e.salary between ?1 and ?2")
     List<Employee> findAllEmployeesBySalary(int salaryFrom, int salaryTo);
 }

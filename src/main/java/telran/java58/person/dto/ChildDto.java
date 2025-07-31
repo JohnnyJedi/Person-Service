@@ -7,9 +7,12 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDate;
 
 @Getter
-@AllArgsConstructor
 @NoArgsConstructor
 public class ChildDto extends PersonDto{
     private String kindergarten;
 
+    public ChildDto(int id, String name, LocalDate birthDate, AddressDto address, String kindergarten) {
+        super(id, name, birthDate, address);
+        this.kindergarten = kindergarten;
+    }
 }
